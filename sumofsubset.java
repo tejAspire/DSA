@@ -1,77 +1,59 @@
-import java.util.*;
-public class Hamiltonian {
-static int MAX=25;
-static int vertex[]=new int[MAX];
-public static void main(String[] args) 
-{
-int i,j,v1,v2,edges,n;
-int G[][]=new int[MAX][MAX];
-System.out.println("\n\t program for Hamiltonian cycle");
-System.out.println("enter the number of vertices of graph");
-Scanner in =new Scanner(System.in);
-n=in.nextInt();
-for(i=1;i<=n;i++)
-{
-for(j=1;j<=n;j++)
-{
-G[i][j]=0;
-vertex[i]=0;
-}
-}
-System.out.println("\n enter the total number of edges:");
-edges=in.nextInt();
-for(i=1;i<=edges;i++)
-{
-System.out.println("enter the edge:");
-v1=in.nextInt();
-v2=in.nextInt();
-G[v1][v2]=1;
-G[v2][v1]=1;
-}
-vertex[1]=1;
-System.out.println("Hamiltonian cycle");
-H_cycle(G,n,2);
-}
-public static void next_vertex(int G[][],int n,int k)
-{
-int j;
-while(true)
-{
-vertex[k]=(vertex[k]+1)%(n+1);
-if(vertex[k]==0)
-return;
-if(G[vertex[k-1]][vertex[k]]!=0)
-{
-for(j=1;j<=k-1;j++)
-{
-if(vertex[j]==vertex[k])
-break;
-		}
-if(j==k)
-{
-if((k<n)||((k==n) && (G[vertex[n]][vertex[1]]!=0)))
-return;
-}
-}
-}
-}
-public static void H_cycle(int G[][],int n,int k)
-{
-int i;
-while(true)
-{
-next_vertex(G,n,k);
-if(vertex[k]==0)
-return;
-if(k==n)
-{
-System.out.println("\n");
-for(i=1;i<=n;i++)
-System.out.print(vertex[i]+"-->");
-System.out.println(" "+vertex[1]);
-}
-else
-H_cycle(G,n,k+1);
-}
-}
+//Design and implement C++/Java Program to find a subset of a given set S = {Sl, S2,…, Sn} of n positive integers whose SUM is equal to a given positive integer d. For example, if S = {1, 2, 5, 6, 8} and d= 9, there are two solutions {1, 2, 6} and {1, 8}. Display a suitable message, if the given problem instance doesn't have a solution.
+
+import java.util.Scanner;
+
+public class SumOfSubsets {
+    int[] w;
+    int[] x;
+    int sum;
+    int total = 0;
+
+    public void process() {
+        getData();
+        System.out.println("The subsets are:");
+        subset(0, 1, total);
+    }
+
+    private void getData() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements:");
+        int n = sc.nextInt();
+        w = new int[n + 1];
+        x = new int[n + 1];
+        System.out.println("Enter " + n + " Elements :");
+        for (int i = 1; i < n + 1; i++) {
+            w[i] = sc.nextInt();
+            total += w[i];
+        }
+        System.out.println("Enter the sum to be obtained: ");
+        sum = sc.nextInt();
+        if (total < sum) {
+            System.out.println("No possible subsets!!!");
+            System.exit(1);
+        }
+        sc.close();
+    }
+
+    private void subset(int s, int k, int r) {
+        int i = 0;
+        x[k] = 1;
+        if (s + w[k] == sum) {
+            System.out.print("(");
+            for (i = 1; i <= k; i++) {
+                if (x[i] == 1)
+                    System.out.print(" " + w[i]);
+            }
+            System.out.println(" )");
+        } else if ((s + w[k] + w[k + 1]) <= sum) {
+            subset(s + w[k], k + 1, r - w[k]);
+        }
+        if ((s + r - w[k]) >= sum && (s + w[k + 1]) <= sum) {
+            x[k] = 0;
+            subset(s, k + 1, r - w[k]);
+        }
+    }
+
+    public static void main(String[] args) {
+        new SumOfSubsets().process();
+    }
 }
