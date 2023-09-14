@@ -79,4 +79,36 @@ System.out.print(" "+a[i][j]);
 } 
 } 
 }
+// Enter number of cities: 
+// 4 
+// enter the cost matrix: 
+// row:1 
+// 0 
+// 10 
+// 15 
+// 20 
+// row:2 
+// 5 
+// 0 
+// 9 
+// 10 
+// row:3 
+// 6 
+// 13 
+// 0 
+// 12 
+// row:4 
+// 8 
+// 8 
+// 9 
+// 0 
+// The cost matrix 
+// 0 10 15 20 
+// 5 0 9 10 
+// 6 13 0 12 
+// 8 8 9 0 
+// path is 
+// 1--> 2--> 4--> 3--> 1 
+// total cost of tour=35
+
 
