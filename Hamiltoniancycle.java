@@ -75,3 +75,26 @@ public class Hamiltonian {
         }
     }
 }
+// program for Hamiltonian cycle
+// enter the number of vertices of graph
+// 4
+// enter the total number of edges:
+// 5
+// enter the edge:
+// 1 2
+// enter the edge:
+// 1 3
+// enter the edge:
+// 1 4
+// enter the edge:
+// 2 3
+// enter the edge:
+// 3 4
+// Hamiltonian cycle
+// 1-->2-->3-->4--> 1
+// 1-->4-->3-->2--> 1
+// Output:-
+// enter the number of vertices of graph
+// 8
+// enter the total number of edges:
+// 11
